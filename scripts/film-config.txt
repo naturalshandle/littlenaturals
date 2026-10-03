@@ -1,0 +1,59 @@
+# ==========================================================================
+# Scroll film — clean-up config for scripts/prepare-film.sh
+# All coordinates are in SOURCE pixels (1920x1080), times in seconds.
+# Measured frame by frame from assets/film/source/little-naturals-journey.mp4.
+# If you replace the video, re-measure these (see README "Scroll film").
+#
+# blur <name> <pad> <feather> <t:x0:y0:x1:y1> ...
+#   A soft blur patch that follows the text. Each keyframe is the text's
+#   bounding box at time t; positions are interpolated between keyframes.
+#   The patch is active from the first keyframe to the last. <pad> grows the
+#   fully-blurred area past the text; <feather> adds a gradual fade of that
+#   many px around it (0 = tight, e.g. next to a face). Every edge also gets
+#   the global Gaussian softening below.
+#
+# focus <t:cx> ...
+#   Horizontal centre of the 4:5 mobile crop over time (keeps faces in frame).
+#
+# logo <x> <y> <w> <h>
+#   Box handed to ffmpeg's delogo to remove the generator watermark.
+# ==========================================================================
+
+logo 1696 856 88 88
+
+# feather <sigma>: global Gaussian softening (px) applied to every patch edge
+feather 9
+
+# 0.00–10.00  soften delogo's streaks where the watermark was (whole film)
+blur logo-soften 0 18  0:1700:860:1780:940 10:1700:860:1780:940
+
+# 0.00–0.70  mirrored "LITTLE NATURALS / KIDS SALON" seen through the glass door
+blur door 14 48  0:398:358:540:468 0.083:398:358:540:468 0.167:398:358:542:468 0.25:372:348:488:462 0.333:358:348:482:462 0.417:348:348:432:460 0.5:333:335:392:448 0.583:313:335:377:448 0.667:298:340:322:445 0.70:296:340:318:445
+
+# 0.00–1.65  reception sign "LITTLE NATURALS" + "KIDS SAL…N" line under it.
+# Blurred (it ghosts during the crossfade). Split into three patches around the
+# receptionist's head so her face stays sharp, right through the crossfade.
+blur sign-top 6 0  0:983:356:1200:425 0.25:983:345:1216:416 0.5:983:333:1232:402 0.75:985:312:1251:388 1:987:298:1278:374 1.25:975:270:1290:356 1.375:964:255:1298:347 1.44:930:252:1275:342 1.5:889:244:1222:320 1.542:895:244:1205:328 1.6:900:244:1188:333 1.65:900:244:1188:333
+blur sign-left 6 0  0:983:356:1107:463 0.25:983:345:1116:463 0.5:983:333:1130:455 0.75:985:312:1144:448 1:987:298:1162:439 1.25:975:270:1180:430 1.375:964:255:1171:425 1.44:930:252:1156:430 1.5:889:244:1096:410 1.542:895:244:1056:395 1.6:900:244:1036:373 1.65:900:244:1036:344
+blur sign-right 6 0  0:1162:356:1204:463 0.25:1175:345:1220:463 0.5:1194:333:1236:455 0.75:1212:312:1255:448 1:1235:298:1282:439 1.25:1258:270:1294:430 1.375:1249:255:1302:425 1.44:1229:252:1279:430 1.5:1182:244:1226:410 1.542:1157:244:1209:395 1.6:1142:244:1192:373 1.65:1142:244:1192:344
+
+# 3.06–4.72  "BOYS' ZONE"
+blur boys 12 32  3.06:850:185:1270:255 3.25:845:185:1171:250 3.375:814:173:1152:238 3.5:799:177:1133:235 3.625:776:169:1121:223 3.75:756:160:1106:225 3.875:741:154:1102:223 4.0:730:150:1094:208 4.125:718:138:1083:208 4.25:703:131:1094:200 4.375:691:127:1083:192 4.5:660:123:1075:192 4.625:614:111:1044:185 4.72:600:105:1040:185
+
+# 3.06–3.85  reversed "ME" fragment on the left wall
+blur boys-me 10 28  3.06:330:190:450:250 3.25:345:198:422:242 3.375:326:195:403:240 3.5:288:190:365:240 3.625:250:185:300:235 3.75:225:185:275:235 3.85:215:185:265:235
+
+# 4.66–6.33  "TODDLER / BABYFIRST HAIRCUT" (misspelled)
+blur toddler 12 34  4.66:768:58:1229:200 4.75:768:58:1229:200 4.875:730:46:1210:192 5.0:710:46:1198:188 5.25:710:46:1229:188 5.5:672:35:1198:188 5.625:703:38:1198:185 5.75:730:38:1229:185 5.875:837:38:1344:185 6.0:1006:38:1536:192 6.125:1229:27:1690:180 6.25:1420:27:1890:180 6.33:1480:27:1920:180
+
+# 5.92–7.70  "MUMS' RELAXATION"
+blur mums 12 34  5.92:0:115:154:270 6.0:0:115:154:270 6.125:0:96:346:250 6.25:24:96:461:250 6.375:173:96:576:250 6.5:250:85:660:246 6.625:300:73:722:238 6.75:326:62:753:238 6.875:326:46:768:231 7.0:326:38:787:223 7.125:319:31:787:215 7.25:319:31:787:215 7.375:269:23:749:215 7.5:58:27:568:219 7.625:0:100:192:235 7.70:0:100:120:235
+
+# 7.95–9.40  garbled "Happy Birthday" on the party backdrop
+blur birthday 12 34  7.95:1690:154:1920:307 8.0:1690:154:1882:307 8.125:1498:111:1882:323 8.25:1344:169:1728:342 8.375:1190:130:1536:400 8.5:1133:150:1440:419 8.625:1075:192:1382:415 8.75:998:242:1286:396 8.875:998:261:1267:396 9.0:979:300:1229:453 9.125:1018:353:1190:468 9.25:979:365:1171:488 9.40:979:365:1171:488
+
+# 9.20–10.00  closing "LITTLE NATURALS" (ghosted while it fades in) + garbled line under it
+blur finale 8 20  9.2:768:360:1152:430 9.25:768:360:1152:430 9.333:730:361:1402:600 9.417:730:380:1267:610 9.5:749:400:1248:628 9.583:768:400:1229:611 9.667:768:396:1210:607 10.0:787:396:1210:607
+
+# Mobile 4:5 crop: follow the children/people in each scene
+focus 0:1100 1.35:1100 1.6:1000 2.3:950 3.0:900 3.3:980 4.5:1000 5.9:1000 6.2:760 6.5:650 7.4:680 7.7:820 8.5:900 9.1:960 10:960

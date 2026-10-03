@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="strands" viewBox="0 0 180 300" aria-hidden="true" focusable="false"><style>
+
+:root {
+  
+  --cream:     #F7F0E4;  
+  --sand:      #EBDDC4;  
+  --baby-blue: #B7CFDA;  
+  --blue-deep: #8AAAC2;  
+  --butter:    #F2D680;  
+  --glow:      #FFEAB0;  
+  --oak:       #D6B88F;  
+  --brass:     #C9A45F;  
+  --ink:       #1E2F3D;  
+  --white:     #FFFFFF;  
+
+  
+  --ink-soft:   color-mix(in srgb, var(--ink) 78%, var(--cream));   
+  --ink-night:  color-mix(in srgb, var(--ink) 88%, var(--baby-blue)); 
+  --line:       color-mix(in srgb, var(--ink) 14%, transparent);
+  --blue-wash:  color-mix(in srgb, var(--baby-blue) 50%, var(--white));
+  --butter-wash: color-mix(in srgb, var(--butter) 40%, var(--cream));
+
+  
+  --font-display: "Quicksand", "Nunito", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Nunito", ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-script:  "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-label:   "Cinzel", "Trajan Pro", Georgia, "Times New Roman", serif;
+
+  
+  --step--1: clamp(0.83rem, 0.80rem + 0.13vw, 0.92rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.19vw, 1.13rem);
+  --step-1:  clamp(1.20rem, 1.13rem + 0.31vw, 1.41rem);
+  --step-2:  clamp(1.44rem, 1.32rem + 0.51vw, 1.77rem);
+  --step-3:  clamp(1.73rem, 1.54rem + 0.81vw, 2.25rem);
+  --step-4:  clamp(2.07rem, 1.78rem + 1.24vw, 2.90rem);
+  --step-5:  clamp(2.49rem, 2.04rem + 1.90vw, 3.75rem);
+  --step-6:  clamp(2.99rem, 2.32rem + 2.84vw, 4.85rem);
+
+  --leading-tight: 1.12;
+  --leading: 1.65;
+  --tracking-label: 0.3em;
+
+  
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2rem;
+  --space-xl:  3rem;
+  --space-2xl: clamp(3.5rem, 2.8rem + 3vw, 5.5rem);
+  --space-3xl: clamp(5rem, 3.8rem + 5vw, 8.5rem);
+  --gutter:    clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --container: 76rem;
+  --container-narrow: 46rem;
+
+  
+  --radius-s: 0.5rem;
+  --radius-m: 1rem;
+  --radius-l: 1.75rem;
+  --radius-pill: 999px;
+  --radius-arch: 999px 999px var(--radius-l) var(--radius-l);
+
+  
+  --shadow-s: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent),
+              0 4px 12px color-mix(in srgb, var(--ink) 6%, transparent);
+  --shadow-m: 0 2px 6px color-mix(in srgb, var(--ink) 7%, transparent),
+              0 18px 40px -12px color-mix(in srgb, var(--ink) 18%, transparent);
+  --shadow-glow: 0 0 0 1px color-mix(in srgb, var(--butter) 60%, transparent),
+                 0 10px 30px -6px color-mix(in srgb, var(--butter) 90%, transparent);
+
+  
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.45, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+  --dur-slow: 900ms;
+
+  --header-h: 5rem;
+}
+
+.strands { width: 100%; height: auto; overflow: visible; }
+.strands .strand { transform-box: view-box; transform-origin: var(--ox) 0; transform: rotate(calc(var(--sway, 0) * var(--k, 1) * 1deg)); transition: transform 1.4s var(--ease-out); }
+.strands line, .strands .rod { stroke: var(--blue-deep); stroke-width: 1.5; }
+.strands .bead { fill: var(--glow); stroke: var(--oak); stroke-width: 1; }
+.strands .disc { fill: color-mix(in srgb, var(--white) 70%, var(--baby-blue)); stroke: var(--blue-deep); stroke-width: 1; }
+.strands .bottle { fill: var(--ink); }
+.strands .cube { fill: var(--baby-blue); stroke: var(--blue-deep); stroke-width: 1; }
+.strands .cube-icon { fill: none; stroke: var(--brass); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes ribbon-drift { to { transform: translateX(-1200px); } }
+@keyframes sign-warm {
+  0%   { color: var(--brass); text-shadow: none; }
+  30%  { color: var(--ink); text-shadow: 0 0 12px var(--glow); }
+  38%  { text-shadow: none; }
+  100% { color: var(--ink); text-shadow: 0 0 10px var(--glow), 0 0 28px var(--glow), 0 0 60px color-mix(in srgb, var(--butter) 70%, transparent); }
+}
+@keyframes twinkle { 50% { opacity: 0.25; transform: scale(0.7) rotate(20deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes rotor { from { transform: scaleX(1); } to { transform: scaleX(0.35); } }
+@keyframes swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+.i-line{fill:none;stroke:var(--ink);stroke-width:2} [data-neon]{opacity:1!important;animation:none!important}</style><g class="strand" style="--ox:30px;--k:0.80"><line x1="30" y1="0" x2="30" y2="260"/><rect class="cube" x="16" y="26" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(30 40)" d="M-6 5C-6-3 0-7 7-7 7 1 2 7-6 5ZM-6 5 2-2"/><rect class="cube" x="16" y="68" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(30 82)" d="M0-7 2-2 7-2 3 1 5 6 0 3-5 6-3 1-7-2-2-2Z"/><rect class="cube" x="16" y="110" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(30 124)" d="M-7 4a4 4 0 0 1 1-7 5 5 0 0 1 9-1 4 4 0 0 1 4 8Z"/><rect class="cube" x="16" y="152" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(30 166)" d="M0-5V6M0 0C-3-7-8-6-7-1-6 3-2 2 0 0 2 2 6 3 7-1 8-6 3-7 0 0Z"/><rect class="cube" x="16" y="194" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(30 208)" d="M-8 3V-1L-5-5H4L7-1V3ZM-5 3a2 2 0 1 0 0 1M5 3a2 2 0 1 0 0 1"/></g><g class="strand" style="--ox:70px;--k:1.05"><line x1="70" y1="0" x2="70" y2="230"/><rect class="cube" x="56" y="48" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(70 62)" d="M0-7 2-2 7-2 3 1 5 6 0 3-5 6-3 1-7-2-2-2Z"/><rect class="cube" x="56" y="90" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(70 104)" d="M-7 4a4 4 0 0 1 1-7 5 5 0 0 1 9-1 4 4 0 0 1 4 8Z"/><rect class="cube" x="56" y="132" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(70 146)" d="M0-5V6M0 0C-3-7-8-6-7-1-6 3-2 2 0 0 2 2 6 3 7-1 8-6 3-7 0 0Z"/><rect class="cube" x="56" y="174" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(70 188)" d="M-8 3V-1L-5-5H4L7-1V3ZM-5 3a2 2 0 1 0 0 1M5 3a2 2 0 1 0 0 1"/></g><g class="strand" style="--ox:110px;--k:1.30"><line x1="110" y1="0" x2="110" y2="200"/><rect class="cube" x="96" y="26" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(110 40)" d="M-7 4a4 4 0 0 1 1-7 5 5 0 0 1 9-1 4 4 0 0 1 4 8Z"/><rect class="cube" x="96" y="68" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(110 82)" d="M0-5V6M0 0C-3-7-8-6-7-1-6 3-2 2 0 0 2 2 6 3 7-1 8-6 3-7 0 0Z"/><rect class="cube" x="96" y="110" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(110 124)" d="M-8 3V-1L-5-5H4L7-1V3ZM-5 3a2 2 0 1 0 0 1M5 3a2 2 0 1 0 0 1"/><rect class="cube" x="96" y="152" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(110 166)" d="M-6 5C-6-3 0-7 7-7 7 1 2 7-6 5ZM-6 5 2-2"/></g><g class="strand" style="--ox:150px;--k:0.80"><line x1="150" y1="0" x2="150" y2="260"/><rect class="cube" x="136" y="48" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(150 62)" d="M0-5V6M0 0C-3-7-8-6-7-1-6 3-2 2 0 0 2 2 6 3 7-1 8-6 3-7 0 0Z"/><rect class="cube" x="136" y="90" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(150 104)" d="M-8 3V-1L-5-5H4L7-1V3ZM-5 3a2 2 0 1 0 0 1M5 3a2 2 0 1 0 0 1"/><rect class="cube" x="136" y="132" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(150 146)" d="M-6 5C-6-3 0-7 7-7 7 1 2 7-6 5ZM-6 5 2-2"/><rect class="cube" x="136" y="174" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(150 188)" d="M0-7 2-2 7-2 3 1 5 6 0 3-5 6-3 1-7-2-2-2Z"/><rect class="cube" x="136" y="216" width="28" height="28" rx="6"/><path class="cube-icon" transform="translate(150 230)" d="M-7 4a4 4 0 0 1 1-7 5 5 0 0 1 9-1 4 4 0 0 1 4 8Z"/></g></svg>

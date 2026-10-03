@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="booth-illus" viewBox="0 0 600 600" role="img" aria-labelledby="booth-t" focusable="false"><style>
+
+:root {
+  
+  --cream:     #F7F0E4;  
+  --sand:      #EBDDC4;  
+  --baby-blue: #B7CFDA;  
+  --blue-deep: #8AAAC2;  
+  --butter:    #F2D680;  
+  --glow:      #FFEAB0;  
+  --oak:       #D6B88F;  
+  --brass:     #C9A45F;  
+  --ink:       #1E2F3D;  
+  --white:     #FFFFFF;  
+
+  
+  --ink-soft:   color-mix(in srgb, var(--ink) 78%, var(--cream));   
+  --ink-night:  color-mix(in srgb, var(--ink) 88%, var(--baby-blue)); 
+  --line:       color-mix(in srgb, var(--ink) 14%, transparent);
+  --blue-wash:  color-mix(in srgb, var(--baby-blue) 50%, var(--white));
+  --butter-wash: color-mix(in srgb, var(--butter) 40%, var(--cream));
+
+  
+  --font-display: "Quicksand", "Nunito", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Nunito", ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-script:  "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-label:   "Cinzel", "Trajan Pro", Georgia, "Times New Roman", serif;
+
+  
+  --step--1: clamp(0.83rem, 0.80rem + 0.13vw, 0.92rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.19vw, 1.13rem);
+  --step-1:  clamp(1.20rem, 1.13rem + 0.31vw, 1.41rem);
+  --step-2:  clamp(1.44rem, 1.32rem + 0.51vw, 1.77rem);
+  --step-3:  clamp(1.73rem, 1.54rem + 0.81vw, 2.25rem);
+  --step-4:  clamp(2.07rem, 1.78rem + 1.24vw, 2.90rem);
+  --step-5:  clamp(2.49rem, 2.04rem + 1.90vw, 3.75rem);
+  --step-6:  clamp(2.99rem, 2.32rem + 2.84vw, 4.85rem);
+
+  --leading-tight: 1.12;
+  --leading: 1.65;
+  --tracking-label: 0.3em;
+
+  
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2rem;
+  --space-xl:  3rem;
+  --space-2xl: clamp(3.5rem, 2.8rem + 3vw, 5.5rem);
+  --space-3xl: clamp(5rem, 3.8rem + 5vw, 8.5rem);
+  --gutter:    clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --container: 76rem;
+  --container-narrow: 46rem;
+
+  
+  --radius-s: 0.5rem;
+  --radius-m: 1rem;
+  --radius-l: 1.75rem;
+  --radius-pill: 999px;
+  --radius-arch: 999px 999px var(--radius-l) var(--radius-l);
+
+  
+  --shadow-s: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent),
+              0 4px 12px color-mix(in srgb, var(--ink) 6%, transparent);
+  --shadow-m: 0 2px 6px color-mix(in srgb, var(--ink) 7%, transparent),
+              0 18px 40px -12px color-mix(in srgb, var(--ink) 18%, transparent);
+  --shadow-glow: 0 0 0 1px color-mix(in srgb, var(--butter) 60%, transparent),
+                 0 10px 30px -6px color-mix(in srgb, var(--butter) 90%, transparent);
+
+  
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.45, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+  --dur-slow: 900ms;
+
+  --header-h: 5rem;
+}
+
+.booth-illus { width: 100%; height: auto; overflow: visible; }
+.booth-illus .scallop-fill { fill: color-mix(in srgb, var(--baby-blue) 30%, var(--ink-night)); }
+.booth-illus .scallop-edge { fill: var(--cream); }
+.booth-illus .wall { fill: var(--cream); }
+.booth-illus .oak { fill: var(--oak); }
+.booth-illus .butter { fill: var(--butter); }
+.booth-illus .blue { fill: var(--baby-blue); }
+.booth-illus .white { fill: var(--white); }
+.booth-illus .line { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.booth-illus .rope { fill: none; stroke: var(--oak); stroke-width: 3; stroke-linecap: round; }
+.booth-illus .neon-stroke { fill: none; stroke: var(--white); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; filter: url(#glow); }
+.booth-illus .neon-text { font-family: var(--font-script); font-weight: 600; fill: var(--white); filter: url(#glow); }
+.booth-illus .swing { transform-box: view-box; transform-origin: 386px 96px; animation: swing 4.2s ease-in-out infinite alternate; }
+.booth-illus .twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle var(--d, 3s) ease-in-out var(--delay, 0s) infinite; fill: var(--glow); }
+@keyframes ribbon-drift { to { transform: translateX(-1200px); } }
+@keyframes sign-warm {
+  0%   { color: var(--brass); text-shadow: none; }
+  30%  { color: var(--ink); text-shadow: 0 0 12px var(--glow); }
+  38%  { text-shadow: none; }
+  100% { color: var(--ink); text-shadow: 0 0 10px var(--glow), 0 0 28px var(--glow), 0 0 60px color-mix(in srgb, var(--butter) 70%, transparent); }
+}
+@keyframes twinkle { 50% { opacity: 0.25; transform: scale(0.7) rotate(20deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes rotor { from { transform: scaleX(1); } to { transform: scaleX(0.35); } }
+@keyframes swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+.i-line{fill:none;stroke:var(--ink);stroke-width:2} [data-neon]{opacity:1!important;animation:none!important}</style>
+<title id="booth-t">Illustration of the photo booth: a cloud-scalloped arch with a swaying swing, the neon words "be you be little", a "little star" speech-bubble neon, cloud shelves, a mini make-up table, storage seating and a ring light.</title>
+<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect class="wall" x="0" y="0" width="600" height="600" rx="36"/>
+<rect class="oak" x="0" y="520" width="600" height="80" rx="0"/>
+<!-- cloud shelves (left) -->
+<g><path class="white line" d="M18 170a15.0 15.0 0 0 1 25.0-12.5a21.2 21.2 0 0 1 40.0 3.8a15.0 15.0 0 0 1 7.5 28.8h-70.0a11.2 11.2 0 0 1 -2.5-20.0z"/><rect class="blue" x="30" y="150" width="10" height="18" rx="2"/><rect class="butter" x="46" y="146" width="9" height="22" rx="2"/>
+<path class="white line" d="M24 260a13.8 13.8 0 0 1 23.0-11.5a19.5 19.5 0 0 1 36.8 3.4a13.8 13.8 0 0 1 6.9 26.4h-64.4a10.3 10.3 0 0 1 -2.3-18.4z"/><circle class="butter" cx="46" cy="238" r="8"/><rect class="blue" x="58" y="236" width="10" height="14" rx="2"/></g>
+<!-- arch -->
+<path class="scallop-fill" d="M110 520V280A190 190 0 0 1 490 280V520Z"/>
+<circle class="scallop-edge" cx="110" cy="280" r="24"/><circle class="scallop-edge" cx="115" cy="238" r="24"/><circle class="scallop-edge" cx="129" cy="198" r="24"/><circle class="scallop-edge" cx="151" cy="162" r="24"/><circle class="scallop-edge" cx="182" cy="131" r="24"/><circle class="scallop-edge" cx="218" cy="109" r="24"/><circle class="scallop-edge" cx="258" cy="95" r="24"/><circle class="scallop-edge" cx="300" cy="90" r="24"/><circle class="scallop-edge" cx="342" cy="95" r="24"/><circle class="scallop-edge" cx="382" cy="109" r="24"/><circle class="scallop-edge" cx="418" cy="131" r="24"/><circle class="scallop-edge" cx="449" cy="162" r="24"/><circle class="scallop-edge" cx="471" cy="198" r="24"/><circle class="scallop-edge" cx="485" cy="238" r="24"/><circle class="scallop-edge" cx="490" cy="280" r="24"/><circle class="scallop-edge" cx="110" cy="314" r="24"/><circle class="scallop-edge" cx="490" cy="314" r="24"/><circle class="scallop-edge" cx="110" cy="348" r="24"/><circle class="scallop-edge" cx="490" cy="348" r="24"/><circle class="scallop-edge" cx="110" cy="382" r="24"/><circle class="scallop-edge" cx="490" cy="382" r="24"/><circle class="scallop-edge" cx="110" cy="416" r="24"/><circle class="scallop-edge" cx="490" cy="416" r="24"/><circle class="scallop-edge" cx="110" cy="450" r="24"/><circle class="scallop-edge" cx="490" cy="450" r="24"/><circle class="scallop-edge" cx="110" cy="484" r="24"/><circle class="scallop-edge" cx="490" cy="484" r="24"/>
+<g><path class="twinkle" style="--d:2.2s;--delay:-0.0s" transform="translate(200 170) scale(1)" d="M0-10 3-3 10-3 4 1 6 9 0 4-6 9-4 1-10-3-3-3Z"/><path class="twinkle" style="--d:2.9s;--delay:-0.6s" transform="translate(410 200) scale(0.8)" d="M0-10 3-3 10-3 4 1 6 9 0 4-6 9-4 1-10-3-3-3Z"/><path class="twinkle" style="--d:3.6s;--delay:-1.2s" transform="translate(238 120) scale(0.6)" d="M0-10 3-3 10-3 4 1 6 9 0 4-6 9-4 1-10-3-3-3Z"/><path class="twinkle" style="--d:4.3s;--delay:-1.8s" transform="translate(380 140) scale(1.1)" d="M0-10 3-3 10-3 4 1 6 9 0 4-6 9-4 1-10-3-3-3Z"/><path class="twinkle" style="--d:2.2s;--delay:-2.4s" transform="translate(170 300) scale(0.7)" d="M0-10 3-3 10-3 4 1 6 9 0 4-6 9-4 1-10-3-3-3Z"/><path class="twinkle" style="--d:2.9s;--delay:-3.0s" transform="translate(440 330) scale(0.9)" d="M0-10 3-3 10-3 4 1 6 9 0 4-6 9-4 1-10-3-3-3Z"/><path class="twinkle" style="--d:3.6s;--delay:-3.6s" transform="translate(300 130) scale(0.5)" d="M0-10 3-3 10-3 4 1 6 9 0 4-6 9-4 1-10-3-3-3Z"/></g>
+<!-- neon: be you be little -->
+<text class="neon-text" data-neon="1" x="218" y="196" text-anchor="middle" font-size="44" transform="rotate(-5 218 210)"><tspan x="218">be you</tspan><tspan x="228" dy="46">be little</tspan></text>
+<!-- neon: little star speech bubble -->
+<g data-neon="2"><path class="neon-stroke" d="M160 310h96a16 16 0 0 1 16 16v26a16 16 0 0 1-16 16h-62l-18 16 4-16h-20a16 16 0 0 1-16-16v-26a16 16 0 0 1 16-16Z"/>
+<text class="neon-text" x="208" y="348" text-anchor="middle" font-size="26">little star</text></g>
+<!-- swing -->
+<g class="swing"><path class="rope" d="M352 96V410M420 96V410"/><rect class="oak" x="336" y="406" width="100" height="14" rx="7"/><rect class="butter" x="342" y="398" width="88" height="10" rx="5"/></g>
+<!-- storage seating inside arch -->
+<rect class="butter" x="140" y="472" width="320" height="18" rx="9"/><rect class="white line" x="146" y="488" width="308" height="32" rx="6"/><path class="line" d="M249 492v24M351 492v24"/>
+<!-- mini make-up table (right) -->
+<g><circle class="white line" cx="540" cy="360" r="26"/><circle class="blue" cx="540" cy="360" r="18"/><rect class="butter line" x="506" y="394" width="68" height="12" rx="4"/><path class="line" d="M514 406v56M566 406v56M506 430h68"/><rect class="blue" x="516" y="382" width="8" height="12" rx="2"/><rect class="oak" x="530" y="386" width="12" height="8" rx="2"/></g>
+<!-- ring light (content creator corner) -->
+<g><circle class="line" cx="556" cy="150" r="22" stroke-width="5"/><circle class="white" cx="556" cy="150" r="17"/><rect class="line" x="548" y="138" width="16" height="26" rx="3"/><path class="line" d="M556 172v180M556 352l-18 60M556 352l18 60M556 352v60"/></g>
+</svg>

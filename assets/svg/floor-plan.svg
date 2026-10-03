@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 1040" role="group" aria-labelledby="fp-title" focusable="false"><style>
+
+:root {
+  
+  --cream:     #F7F0E4;  
+  --sand:      #EBDDC4;  
+  --baby-blue: #B7CFDA;  
+  --blue-deep: #8AAAC2;  
+  --butter:    #F2D680;  
+  --glow:      #FFEAB0;  
+  --oak:       #D6B88F;  
+  --brass:     #C9A45F;  
+  --ink:       #1E2F3D;  
+  --white:     #FFFFFF;  
+
+  
+  --ink-soft:   color-mix(in srgb, var(--ink) 78%, var(--cream));   
+  --ink-night:  color-mix(in srgb, var(--ink) 88%, var(--baby-blue)); 
+  --line:       color-mix(in srgb, var(--ink) 14%, transparent);
+  --blue-wash:  color-mix(in srgb, var(--baby-blue) 50%, var(--white));
+  --butter-wash: color-mix(in srgb, var(--butter) 40%, var(--cream));
+
+  
+  --font-display: "Quicksand", "Nunito", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Nunito", ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-script:  "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-label:   "Cinzel", "Trajan Pro", Georgia, "Times New Roman", serif;
+
+  
+  --step--1: clamp(0.83rem, 0.80rem + 0.13vw, 0.92rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.19vw, 1.13rem);
+  --step-1:  clamp(1.20rem, 1.13rem + 0.31vw, 1.41rem);
+  --step-2:  clamp(1.44rem, 1.32rem + 0.51vw, 1.77rem);
+  --step-3:  clamp(1.73rem, 1.54rem + 0.81vw, 2.25rem);
+  --step-4:  clamp(2.07rem, 1.78rem + 1.24vw, 2.90rem);
+  --step-5:  clamp(2.49rem, 2.04rem + 1.90vw, 3.75rem);
+  --step-6:  clamp(2.99rem, 2.32rem + 2.84vw, 4.85rem);
+
+  --leading-tight: 1.12;
+  --leading: 1.65;
+  --tracking-label: 0.3em;
+
+  
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2rem;
+  --space-xl:  3rem;
+  --space-2xl: clamp(3.5rem, 2.8rem + 3vw, 5.5rem);
+  --space-3xl: clamp(5rem, 3.8rem + 5vw, 8.5rem);
+  --gutter:    clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --container: 76rem;
+  --container-narrow: 46rem;
+
+  
+  --radius-s: 0.5rem;
+  --radius-m: 1rem;
+  --radius-l: 1.75rem;
+  --radius-pill: 999px;
+  --radius-arch: 999px 999px var(--radius-l) var(--radius-l);
+
+  
+  --shadow-s: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent),
+              0 4px 12px color-mix(in srgb, var(--ink) 6%, transparent);
+  --shadow-m: 0 2px 6px color-mix(in srgb, var(--ink) 7%, transparent),
+              0 18px 40px -12px color-mix(in srgb, var(--ink) 18%, transparent);
+  --shadow-glow: 0 0 0 1px color-mix(in srgb, var(--butter) 60%, transparent),
+                 0 10px 30px -6px color-mix(in srgb, var(--butter) 90%, transparent);
+
+  
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.45, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+  --dur-slow: 900ms;
+
+  --header-h: 5rem;
+}
+
+.fp-shell { fill: var(--cream); stroke: var(--blue-deep); stroke-width: 6; stroke-linejoin: round; }
+.fp-neutral { fill: color-mix(in srgb, var(--sand) 80%, var(--cream)); stroke: color-mix(in srgb, var(--blue-deep) 50%, transparent); stroke-width: 2; }
+.fp-zone { cursor: pointer; outline: none; }
+.fp-zone .fp-area { fill: var(--blue-wash); stroke: var(--blue-deep); stroke-width: 2; transition: fill var(--dur-fast), stroke-width var(--dur-fast); }
+.fp-zone[data-tone="butter"] .fp-area { fill: color-mix(in srgb, var(--butter) 55%, var(--cream)); }
+.fp-zone[data-tone="oak"] .fp-area { fill: color-mix(in srgb, var(--oak) 55%, var(--cream)); }
+.fp-zone .fp-furn { fill: var(--white); stroke: var(--oak); stroke-width: 1.5; pointer-events: none; }
+.fp-zone .fp-furn--blue { fill: var(--baby-blue); stroke: var(--blue-deep); }
+.fp-zone .fp-furn--butter { fill: var(--butter); stroke: var(--brass); }
+.fp-zone text { font-family: var(--font-display); font-weight: 700; font-size: 17px; fill: var(--ink); pointer-events: none; paint-order: stroke; stroke: var(--white); stroke-width: 5px; stroke-linejoin: round; }
+.fp-zone[data-zone="retail"] text { font-size: 14px; }
+.fp-zone:hover .fp-area, .fp-zone:focus-visible .fp-area, .fp-zone.is-active .fp-area { fill: var(--butter); stroke: var(--ink); stroke-width: 3; }
+.fp-zone:focus-visible .fp-area { stroke-dasharray: 6 4; }
+.fp-label { font-family: var(--font-label); font-size: 13px; letter-spacing: 0.25em; fill: var(--ink-soft); }
+@keyframes ribbon-drift { to { transform: translateX(-1200px); } }
+@keyframes sign-warm {
+  0%   { color: var(--brass); text-shadow: none; }
+  30%  { color: var(--ink); text-shadow: 0 0 12px var(--glow); }
+  38%  { text-shadow: none; }
+  100% { color: var(--ink); text-shadow: 0 0 10px var(--glow), 0 0 28px var(--glow), 0 0 60px color-mix(in srgb, var(--butter) 70%, transparent); }
+}
+@keyframes twinkle { 50% { opacity: 0.25; transform: scale(0.7) rotate(20deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes rotor { from { transform: scaleX(1); } to { transform: scaleX(0.35); } }
+@keyframes swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+.i-line{fill:none;stroke:var(--ink);stroke-width:2} [data-neon]{opacity:1!important;animation:none!important}</style>
+<title id="fp-title">Floor plan of the Little Naturals store at Phoenix Mall, 1,287 square feet. Select a zone to see details.</title>
+<path class="fp-shell" d="M245 20 555 25 585 995 40 995 370 255 218 195Z"/>
+<path class="fp-neutral" d="M415 26 553 28 557 226 415 226Z" aria-hidden="true"/>
+<g class="fp-zone" data-zone="pedicure" data-tone="blue" tabindex="0" role="button" aria-label="Pedicure Lounge: show details"><path class="fp-area" d="M245 22 413 24 413 244 370 256 220 196Z"/><rect class="fp-furn fp-furn--butter" x="258" y="50" width="42" height="130" rx="8"/><rect class="fp-furn fp-furn--blue" x="312" y="60" width="26" height="26" rx="5"/><circle class="fp-furn" cx="360" cy="73" r="9"/><rect class="fp-furn fp-furn--blue" x="312" y="102" width="26" height="26" rx="5"/><circle class="fp-furn" cx="360" cy="115" r="9"/><rect class="fp-furn fp-furn--blue" x="312" y="144" width="26" height="26" rx="5"/><circle class="fp-furn" cx="360" cy="157" r="9"/><text x="318" y="214" text-anchor="middle">Pedicure Lounge</text></g><g class="fp-zone" data-zone="sub-junior-styling" data-tone="butter" tabindex="0" role="button" aria-label="Sub-Junior Styling: show details"><path class="fp-area" d="M368 262 452 262 452 470 279 470Z"/><circle class="fp-furn fp-furn--butter" cx="372" cy="305" r="13"/><circle class="fp-furn fp-furn--butter" cx="344" cy="363" r="13"/><circle class="fp-furn fp-furn--butter" cx="316" cy="421" r="13"/><text x="398" y="450" text-anchor="middle">Sub-Junior</text></g><g class="fp-zone" data-zone="ballpit" data-tone="oak" tabindex="0" role="button" aria-label="Kids Ball Pit &amp; Climbing Wall: show details"><path class="fp-area" d="M462 232 552 232 555 440 462 440Z"/><path class="fp-furn fp-furn--butter" d="M478 250C478 236 540 236 540 256V420C540 440 500 440 500 420 500 380 478 380 478 340Z"/><text x="509" y="345" text-anchor="middle">Ball Pit</text></g><g class="fp-zone" data-zone="hair-wash" data-tone="blue" tabindex="0" role="button" aria-label="Hair Wash: show details"><path class="fp-area" d="M430 448 556 448 560 590 430 590C410 590 410 448 430 448Z"/><rect class="fp-furn fp-furn--blue" x="455" y="475" width="34" height="30" rx="6"/><rect class="fp-furn fp-furn--blue" x="455" y="532" width="34" height="30" rx="6"/><text x="492" y="582" text-anchor="middle">Hair Wash</text></g><g class="fp-zone" data-zone="junior-styling" data-tone="butter" tabindex="0" role="button" aria-label="Junior Styling: show details"><path class="fp-area" d="M450 602 562 602 569 820 450 820Z"/><circle class="fp-furn fp-furn--blue" cx="530" cy="645" r="14"/><rect class="fp-furn" x="553" y="633" width="8" height="24" rx="3"/><circle class="fp-furn fp-furn--blue" cx="530" cy="707" r="14"/><rect class="fp-furn" x="553" y="695" width="8" height="24" rx="3"/><circle class="fp-furn fp-furn--blue" cx="530" cy="769" r="14"/><rect class="fp-furn" x="553" y="757" width="8" height="24" rx="3"/><text x="505" y="806" text-anchor="middle">Junior Styling</text></g><g class="fp-zone" data-zone="little-nails" data-tone="blue" tabindex="0" role="button" aria-label="Little Nails: show details"><path class="fp-area" d="M275 478C330 478 395 560 390 640 385 760 300 860 290 985H48L276 478Z"/><circle class="fp-furn" cx="296" cy="545" r="16"/><rect class="fp-furn" x="250" y="620" width="92" height="30" rx="15" transform="rotate(18 296 635)"/><rect class="fp-furn" x="206" y="710" width="92" height="30" rx="15" transform="rotate(18 252 725)"/><rect class="fp-furn" x="162" y="800" width="92" height="30" rx="15" transform="rotate(18 208 815)"/><rect class="fp-furn" x="118" y="890" width="92" height="30" rx="15" transform="rotate(18 164 905)"/><text x="318" y="612" text-anchor="middle">Little Nails</text></g><g class="fp-zone" data-zone="retail" data-tone="oak" tabindex="0" role="button" aria-label="Retail: show details"><path class="fp-area" d="M260 520 274 520 110 900 94 892ZM432 850H560V872H432Z"/><text x="496" y="866" text-anchor="middle">Retail</text></g><g class="fp-zone" data-zone="entry-billing" data-tone="oak" tabindex="0" role="button" aria-label="Entry &amp; Billing: show details"><path class="fp-area" d="M44 960H582L585 995H40ZM440 882H540V940H440Z"/><rect class="fp-furn fp-furn--butter" x="452" y="896" width="76" height="30" rx="15"/><text x="240" y="984" text-anchor="middle">Entry &amp; Billing</text></g>
+<text class="fp-label" x="312" y="1030" text-anchor="middle">ENTRY</text>
+</svg>

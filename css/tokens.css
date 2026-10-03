@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Little Naturals — design tokens
+   Every colour on the site comes from this file. Do not hard-code colours
+   anywhere else; derive tints with color-mix() from these tokens.
+   Sampled from the Phoenix Mall renders + logo (see PLAN.md §2).
+   ========================================================================== */
+
+/* Local accent font (assets/KidsBoys.ttf). Path is relative to this CSS file. */
+@font-face {
+  font-family: "KidsBoys";
+  src: url("../assets/KidsBoys.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- Colour ---- */
+  --cream:     #F7F0E4;  /* warm wall plaster / page background */
+  --sand:      #EBDDC4;  /* deeper plaster, section bands */
+  --baby-blue: #B7CFDA;  /* ceiling ribbons, joinery, pedicure wall */
+  --blue-deep: #8AAAC2;  /* logo sprout; decorative accents only (fails AA as text) */
+  --butter:    #F2D680;  /* fluted wall, styling chairs, stars */
+  --glow:      #FFEAB0;  /* warm neon / backlight glow */
+  --oak:       #D6B88F;  /* light wood furniture, flooring */
+  --brass:     #C9A45F;  /* chair bases, fixtures; small decorative accents only */
+  --ink:       #1E2F3D;  /* logo navy: all body text and headings */
+  --white:     #FFFFFF;  /* cards and surfaces */
+
+  /* Derived tints (still token-based) */
+  --ink-soft:   color-mix(in srgb, var(--ink) 78%, var(--cream));   /* secondary text, 7:1+ on cream */
+  --ink-night:  color-mix(in srgb, var(--ink) 88%, var(--baby-blue)); /* dark neon bands */
+  --line:       color-mix(in srgb, var(--ink) 14%, transparent);
+  --blue-wash:  color-mix(in srgb, var(--baby-blue) 50%, var(--white));
+  --butter-wash: color-mix(in srgb, var(--butter) 40%, var(--cream));
+
+  /* ---- Typography ---- */
+  --font-display: "Quicksand", "Nunito", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Nunito", ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-script:  "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-label:   "Cinzel", "Trajan Pro", Georgia, "Times New Roman", serif;
+  --font-fun:     "KidsBoys", "Quicksand", ui-rounded, "Segoe UI", system-ui, sans-serif; /* playful accents only */
+
+  /* One fluid type scale (min @ 375px → max @ 1440px) */
+  --step--1: clamp(0.83rem, 0.80rem + 0.13vw, 0.92rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.19vw, 1.13rem);
+  --step-1:  clamp(1.20rem, 1.13rem + 0.31vw, 1.41rem);
+  --step-2:  clamp(1.44rem, 1.32rem + 0.51vw, 1.77rem);
+  --step-3:  clamp(1.73rem, 1.54rem + 0.81vw, 2.25rem);
+  --step-4:  clamp(2.07rem, 1.78rem + 1.24vw, 2.90rem);
+  --step-5:  clamp(2.49rem, 2.04rem + 1.90vw, 3.75rem);
+  --step-6:  clamp(2.99rem, 2.32rem + 2.84vw, 4.85rem);
+
+  --leading-tight: 1.12;
+  --leading: 1.65;
+  --tracking-label: 0.3em;
+
+  /* ---- Space ---- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2rem;
+  --space-xl:  3rem;
+  --space-2xl: clamp(3.5rem, 2.8rem + 3vw, 5.5rem);
+  --space-3xl: clamp(5rem, 3.8rem + 5vw, 8.5rem);
+  --gutter:    clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --container: 76rem;
+  --container-narrow: 46rem;
+
+  /* ---- Shape ---- */
+  --radius-s: 0.5rem;
+  --radius-m: 1rem;
+  --radius-l: 1.75rem;
+  --radius-pill: 999px;
+  --radius-arch: 999px 999px var(--radius-l) var(--radius-l);
+
+  /* ---- Elevation ---- */
+  --shadow-s: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent),
+              0 4px 12px color-mix(in srgb, var(--ink) 6%, transparent);
+  --shadow-m: 0 2px 6px color-mix(in srgb, var(--ink) 7%, transparent),
+              0 18px 40px -12px color-mix(in srgb, var(--ink) 18%, transparent);
+  --shadow-glow: 0 0 0 1px color-mix(in srgb, var(--butter) 60%, transparent),
+                 0 10px 30px -6px color-mix(in srgb, var(--butter) 90%, transparent);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.45, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+  --dur-slow: 900ms;
+
+  --header-h: 5rem;
+}

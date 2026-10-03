@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 320" role="img" aria-label="Simplified outline of the 1,287 square foot Phoenix Mall store" focusable="false"><style>
+
+:root {
+  
+  --cream:     #F7F0E4;  
+  --sand:      #EBDDC4;  
+  --baby-blue: #B7CFDA;  
+  --blue-deep: #8AAAC2;  
+  --butter:    #F2D680;  
+  --glow:      #FFEAB0;  
+  --oak:       #D6B88F;  
+  --brass:     #C9A45F;  
+  --ink:       #1E2F3D;  
+  --white:     #FFFFFF;  
+
+  
+  --ink-soft:   color-mix(in srgb, var(--ink) 78%, var(--cream));   
+  --ink-night:  color-mix(in srgb, var(--ink) 88%, var(--baby-blue)); 
+  --line:       color-mix(in srgb, var(--ink) 14%, transparent);
+  --blue-wash:  color-mix(in srgb, var(--baby-blue) 50%, var(--white));
+  --butter-wash: color-mix(in srgb, var(--butter) 40%, var(--cream));
+
+  
+  --font-display: "Quicksand", "Nunito", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Nunito", ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-script:  "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-label:   "Cinzel", "Trajan Pro", Georgia, "Times New Roman", serif;
+
+  
+  --step--1: clamp(0.83rem, 0.80rem + 0.13vw, 0.92rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.19vw, 1.13rem);
+  --step-1:  clamp(1.20rem, 1.13rem + 0.31vw, 1.41rem);
+  --step-2:  clamp(1.44rem, 1.32rem + 0.51vw, 1.77rem);
+  --step-3:  clamp(1.73rem, 1.54rem + 0.81vw, 2.25rem);
+  --step-4:  clamp(2.07rem, 1.78rem + 1.24vw, 2.90rem);
+  --step-5:  clamp(2.49rem, 2.04rem + 1.90vw, 3.75rem);
+  --step-6:  clamp(2.99rem, 2.32rem + 2.84vw, 4.85rem);
+
+  --leading-tight: 1.12;
+  --leading: 1.65;
+  --tracking-label: 0.3em;
+
+  
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2rem;
+  --space-xl:  3rem;
+  --space-2xl: clamp(3.5rem, 2.8rem + 3vw, 5.5rem);
+  --space-3xl: clamp(5rem, 3.8rem + 5vw, 8.5rem);
+  --gutter:    clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --container: 76rem;
+  --container-narrow: 46rem;
+
+  
+  --radius-s: 0.5rem;
+  --radius-m: 1rem;
+  --radius-l: 1.75rem;
+  --radius-pill: 999px;
+  --radius-arch: 999px 999px var(--radius-l) var(--radius-l);
+
+  
+  --shadow-s: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent),
+              0 4px 12px color-mix(in srgb, var(--ink) 6%, transparent);
+  --shadow-m: 0 2px 6px color-mix(in srgb, var(--ink) 7%, transparent),
+              0 18px 40px -12px color-mix(in srgb, var(--ink) 18%, transparent);
+  --shadow-glow: 0 0 0 1px color-mix(in srgb, var(--butter) 60%, transparent),
+                 0 10px 30px -6px color-mix(in srgb, var(--butter) 90%, transparent);
+
+  
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.45, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+  --dur-slow: 900ms;
+
+  --header-h: 5rem;
+}
+
+
+@keyframes ribbon-drift { to { transform: translateX(-1200px); } }
+@keyframes sign-warm {
+  0%   { color: var(--brass); text-shadow: none; }
+  30%  { color: var(--ink); text-shadow: 0 0 12px var(--glow); }
+  38%  { text-shadow: none; }
+  100% { color: var(--ink); text-shadow: 0 0 10px var(--glow), 0 0 28px var(--glow), 0 0 60px color-mix(in srgb, var(--butter) 70%, transparent); }
+}
+@keyframes twinkle { 50% { opacity: 0.25; transform: scale(0.7) rotate(20deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes rotor { from { transform: scaleX(1); } to { transform: scaleX(0.35); } }
+@keyframes swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+.i-line{fill:none;stroke:var(--ink);stroke-width:2} [data-neon]{opacity:1!important;animation:none!important}</style>
+<path d="M72 8 159 10 168 282 13 282 107 76 63 58Z" style="fill:var(--cream);stroke:var(--blue-deep)" stroke-width="4" stroke-linejoin="round"/>
+<path d="M78 138C98 138 116 160 112 190 108 222 88 250 84 280H16Z" style="fill:var(--blue-wash)"/>
+<circle cx="150" cy="182" r="7" style="fill:var(--butter)"/><circle cx="151" cy="200" r="7" style="fill:var(--butter)"/><circle cx="152" cy="218" r="7" style="fill:var(--butter)"/>
+<path d="M136 72C136 66 152 66 152 72V122C152 128 142 128 142 122 142 110 136 110 136 98Z" style="fill:var(--butter)"/>
+<rect x="76" y="14" width="12" height="36" rx="4" style="fill:var(--butter-wash)"/>
+<g transform="translate(92 214)"><path d="M0-30c-10 0-17 7-17 16 0 12 17 25 17 25s17-13 17-25c0-9-7-16-17-16Z" style="fill:var(--ink)"/><circle cy="-14" r="6" style="fill:var(--butter)"/></g>
+<text x="100" y="310" text-anchor="middle" font-size="13" letter-spacing="3" style="font-family:var(--font-label);fill:var(--ink)">1,287 SQ FT</text>
+</svg>
