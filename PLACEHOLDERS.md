@@ -32,3 +32,5 @@ Not linked from the site. Nothing unfinished is visible on any page: empty value
 - **Girls' Superstar Package** still lists "hair curling or straightening" as an inclusion, although curling/straightening was removed as a separate service. Confirm whether the package still includes it.
 - **Real photography** to replace the "Store design preview" renders.
 - **Booking backend** (optional). See the comment at the top of `js/forms.js`.
+- **Trust badges (home, "Our promise" band).** The five badges in `assets/badges/` are a temporary redraw made from the badge names only; the client's artwork (`references/badges.png`) was never added. Ask for the original vector files and replace them, keeping wording, icons and colours exactly as supplied.
+- **Trust badge captions** are draft, confirm with client: "Products that are kind to animals." / "Chosen for little hair, skin and nails." / "Picked with parents in mind." / "Gentle formulas for gentle care." / "Quality products in every service."

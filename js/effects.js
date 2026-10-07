@@ -1,6 +1,7 @@
 /* ==========================================================================
    Little Naturals — effects.js
    Soap bubbles, neon warm-up, ribbon parallax, helicopter line draw,
+   trust badge stamp-in,
    strand/cube sway, twinkling stars. Every effect respects
    prefers-reduced-motion.
    ========================================================================== */
@@ -134,6 +135,33 @@
       if (!rafId) rafId = requestAnimationFrame(tick);
     }, { passive: true });
   }
+
+  /* ---------- Trust badges: stamp in once + dots for the phone swipe row ---------- */
+  var badgeRows = Array.prototype.slice.call(document.querySelectorAll("[data-badges]"));
+  onView(badgeRows, function (row) { row.classList.add("is-stamped"); }, { threshold: 0.3 });
+  badgeRows.forEach(function (row) {
+    var items = Array.prototype.slice.call(row.children), raf = 0;
+    var dots = document.createElement("div");
+    dots.className = "badges__dots";
+    dots.setAttribute("aria-hidden", "true");
+    items.forEach(function () { dots.appendChild(document.createElement("span")); });
+    row.parentNode.insertBefore(dots, row.nextSibling);
+    function mark() {
+      raf = 0;
+      var mid = row.scrollLeft + row.clientWidth / 2, best = 0, gap = Infinity;
+      items.forEach(function (it, i) {
+        var d = Math.abs(it.offsetLeft + it.offsetWidth / 2 - mid);
+        if (d < gap) { gap = d; best = i; }
+      });
+      Array.prototype.forEach.call(dots.children, function (d, i) { d.classList.toggle("is-on", i === best); });
+    }
+    row.addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(mark); }, { passive: true });
+    // keyboard-scrollable only while it actually is a swipe row
+    var swipe = window.matchMedia("(max-width: 767px)");
+    var sync = function () { if (swipe.matches) row.tabIndex = 0; else row.removeAttribute("tabindex"); mark(); };
+    if (swipe.addEventListener) swipe.addEventListener("change", sync); else swipe.addListener(sync);
+    sync();
+  });
 
   /* ---------- Twinkling stars ----------
      <div class="stars" data-stars="14"></div> */

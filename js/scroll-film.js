@@ -1,7 +1,7 @@
 /* ==========================================================================
    Little Naturals — scroll-film.js
    Home page opening film: scroll scrubs a 240-frame WebP sequence drawn to a
-   <canvas>, with chapter cards from js/film-data.js.
+   <canvas>; chapter timing comes from js/film-data.js.
 
    - The stage is pinned with CSS position: sticky; GSAP ScrollTrigger reads
      the scroll progress (scrub 0.6 smoothing) and Lenis smooths the wheel.
@@ -9,7 +9,7 @@
    - Frames load progressively: every 8th frame first (31 frames), then the
      gaps. The poster is in the HTML, so the first frame is instant.
    - Save-Data / 2G: no frames, chapter posters crossfade instead.
-   - prefers-reduced-motion: no pinning or scrubbing; chapters become a list.
+   - prefers-reduced-motion: no pinning or scrubbing; chapters become a list of stills.
    ========================================================================== */
 (function () {
   "use strict";
@@ -34,25 +34,11 @@
   var media = section.querySelector(".sf__media");
   var canvas = section.querySelector(".sf__canvas");
   var fx = section.querySelector(".sf__fx");
-  var cardsBox = section.querySelector(".sf__cards");
   var railList = section.querySelector(".sf__rail ol");
   var skip = section.querySelector(".sf__skip");
   var after = document.getElementById("after-film");
 
   /* ---------------- Content from the data files ---------------- */
-  var names = {};
-  (window.LN_MENU || []).forEach(function (cat) {
-    names[cat.id] = cat.category;
-    cat.items.forEach(function (it) { names[it.id] = it.name; });
-  });
-  function bodyText(ch) {
-    var b = ch.body || "";
-    if (b.indexOf("{party}") > -1) {
-      var p = window.LN_BIRTHDAY_PACKAGE;
-      b = b.replace("{party}", p ? p.name + ": " + p.guests + ", " + p.duration + "." : "");
-    }
-    return b;
-  }
   function el(tag, cls, text) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -70,50 +56,11 @@
     return pic;
   }
 
-  var cards = chapters.map(function (ch, i) {
-    var card = el("article", "sf-card");
-    card.id = "film-" + ch.id;
-    card.setAttribute("data-side", ch.side || "left");
-    card.setAttribute("aria-labelledby", card.id + "-title");
-    var chips = (ch.services || []).map(function (id) { return names[id]; }).filter(Boolean).concat(ch.extras || []);
-    var body = bodyText(ch);
-    if (ch.neon) card.classList.add("sf-card--neon");
-    if (chips.length && body) card.classList.add("sf-card--mobile-" + (ch.mobile === "chips" ? "chips" : "body"));
-
-    var panel = el("div", "sf-card__panel");
-    panel.innerHTML = '<svg class="sf-card__arch" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 100A50 100 0 0 1 100 100" vector-effect="non-scaling-stroke"/></svg>';
-    var n = 0;
-    function add(node) { node.style.setProperty("--i", n++); panel.appendChild(node); }
-    if (ch.eyebrow) add(el("p", "eyebrow", ch.eyebrow));
-    var h = el("h2", "sf-card__title" + (ch.neon ? " neon" : ""), ch.heading);
-    h.id = card.id + "-title";
-    add(h);
-    if (body) add(el("p", "sf-card__body", body));
-    if (chips.length) {
-      var ul = el("ul", "sf-card__chips");
-      ul.setAttribute("role", "list");
-      ul.setAttribute("aria-label", "Services");
-      chips.forEach(function (c) { var li = el("li", "sf-chip", c); ul.appendChild(li); });
-      add(ul);
-    }
-    if (ch.action && ch.action.href) {
-      var p = el("p", "sf-card__action");
-      var a = el("a", "btn btn--primary", ch.action.label);
-      a.href = ch.action.href;
-      p.appendChild(a);
-      add(p);
-    }
-    card.appendChild(panel);
-    cardsBox.appendChild(card);
-    return card;
-  });
-
   var dots = chapters.map(function (ch, i) {
     var li = el("li");
     var b = el("button", "sf-dot");
     b.type = "button";
     b.setAttribute("aria-label", "Chapter " + (i + 1) + ": " + ch.name);
-    b.setAttribute("aria-controls", "film-" + ch.id);
     var lab = el("span", "sf-dot__label", ch.name);
     lab.setAttribute("aria-hidden", "true");
     b.appendChild(lab);
@@ -124,18 +71,11 @@
 
   /* ---------------- Chapter state ---------------- */
   var current = -1;
-  var neonLit = false, lastConfetti = 0;
+  var lastConfetti = 0;
   function setChapter(i, forward) {
     if (i === current) return;
     var prev = current;
     current = i;
-    cards.forEach(function (c, k) {
-      if (k === i) { c.classList.remove("is-leaving"); c.classList.add("is-active"); }
-      else if (k === prev) {
-        c.classList.remove("is-active"); c.classList.add("is-leaving");
-        setTimeout(function () { if (current !== k) c.classList.remove("is-leaving"); }, 460);
-      }
-    });
     dots.forEach(function (d, k) {
       if (k === i) d.setAttribute("aria-current", "step"); else d.removeAttribute("aria-current");
     });
@@ -146,8 +86,6 @@
     if (i === chapters.length - 1) finale(forward);
   }
   function finale(forward) {
-    var h = cards[cards.length - 1].querySelector(".neon");
-    if (h && !neonLit) { neonLit = true; h.classList.add("is-lit"); }
     var now = performance.now();
     if (forward && window.LNConfetti && now - lastConfetti > 6000) {
       lastConfetti = now;
@@ -160,20 +98,16 @@
   /* ---------------- Reduced motion: a calm list ---------------- */
   if (reduce) {
     section.classList.add("sf--static");
-    cards.forEach(function (c, i) {
-      var fig = el("figure", "sf-card__poster");
+    var stills = el("div", "sf__stills");
+    chapters.forEach(function (ch, i) {
+      var fig = el("figure", "sf__still");
       fig.appendChild(posterPicture("chapter-" + (i + 1)));
-      c.insertBefore(fig, c.firstChild);
-      c.classList.add("is-active");
+      stills.appendChild(fig);
     });
-    var h = cards[cards.length - 1].querySelector(".neon");
-    if (h) h.classList.add("is-lit");
+    stage.appendChild(stills);
     return;
   }
-  // Chapter 1 card is on screen straight away (no entrance animation on load)
-  section.classList.add("sf--instant");
   setChapter(0, true);
-  requestAnimationFrame(function () { requestAnimationFrame(function () { section.classList.remove("sf--instant"); }); });
 
   /* ---------------- Scroll length + time mapping ---------------- */
   var lens = [], cum = [], totalVh = 0, vh = window.innerHeight, lastW = window.innerWidth;
@@ -364,12 +298,6 @@
     else window.scrollTo({ top: y, behavior: "smooth" });
   }
   dots.forEach(function (d, i) { d.addEventListener("click", function () { scrollToY(chapterY(i)); }); });
-  // Tabbing into a card that isn't on screen yet brings its chapter up
-  cardsBox.addEventListener("focusin", function (e) {
-    var i = cards.indexOf(e.target.closest(".sf-card"));
-    if (i < 0 || i === current) return;
-    if (lenis) lenis.scrollTo(chapterY(i), { immediate: true }); else window.scrollTo(0, chapterY(i));
-  });
   if (skip && after) {
     skip.addEventListener("click", function (e) {
       e.preventDefault();
@@ -488,10 +416,6 @@
     gsap.fromTo(media, { scale: 1, opacity: 1 }, {
       scale: 0.94, opacity: 0.55, ease: "none",
       scrollTrigger: { trigger: section, start: "bottom bottom", end: "bottom 35%", scrub: true }
-    });
-    gsap.fromTo(cardsBox, { opacity: 1 }, {
-      opacity: 0, ease: "none",
-      scrollTrigger: { trigger: section, start: "bottom bottom", end: "bottom 70%", scrub: true }
     });
   }
 })();

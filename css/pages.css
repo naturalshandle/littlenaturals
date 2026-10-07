@@ -95,6 +95,79 @@
 .page-hero h1 { font-size: var(--step-5); max-width: 18ch; margin-inline: auto; }
 .page-hero .lede { margin-inline: auto; }
 
+/* ---------- Trust badges (home) ----------
+   Badge artwork carries its own colours (inline SVG, assets/badges/). */
+.trust .section-head { margin-bottom: var(--space-l); }
+.badges {
+  position: relative;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 11rem));
+  justify-content: center; gap: var(--space-l) clamp(1rem, 0.2rem + 2.2vw, 3rem);
+  margin: 0; padding: 0; list-style: none;
+}
+.badge { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.badge__plate {
+  position: relative; z-index: 0;
+  display: block; width: min(100%, 9.75rem); aspect-ratio: 1;
+  padding: 0.5rem; border-radius: 50%;
+  background: var(--cream);
+  box-shadow: var(--shadow-s);
+  transition: box-shadow 600ms var(--ease-out);
+}
+.badge__plate svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.badge__plate::after { /* ink "press" ring that expands from the stamp */
+  content: ""; position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  opacity: 0; pointer-events: none;
+}
+.badge__ring, .badge__icon { transform-box: view-box; transform-origin: center; transition: transform 600ms var(--ease-out); }
+.badge__note { margin: var(--space-s) 0 0; max-width: 11rem; font-size: var(--step--1); line-height: 1.4; color: var(--ink); }
+.badges__dots { display: none; }
+
+/* stamp-in, once, when the row scrolls into view (js/effects.js) */
+.js .badges:not(.is-stamped) .badge__plate,
+.js .badges:not(.is-stamped) .badge__note { opacity: 0; }
+.badges.is-stamped .badge__plate { animation: badge-stamp 640ms var(--ease-out) both; animation-delay: calc(var(--i, 0) * 110ms); }
+.badges.is-stamped .badge__plate::after { animation: badge-press 900ms var(--ease-out) both; animation-delay: calc(var(--i, 0) * 110ms + 160ms); }
+.badges.is-stamped .badge__note { animation: badge-note 500ms var(--ease-soft) both; animation-delay: calc(var(--i, 0) * 110ms + 220ms); }
+@keyframes badge-stamp { from { opacity: 0; transform: scale(1.15); } 55% { opacity: 1; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes badge-press { from { opacity: 0.9; transform: scale(0.96); } to { opacity: 0; transform: scale(1.3); } }
+@keyframes badge-note { from { opacity: 0; } }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .badge:hover .badge__plate { box-shadow: var(--shadow-m); }
+  .badge:hover .badge__ring { transform: rotate(8deg); }
+  .badge:hover .badge__icon { transform: translateY(-3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .badges .badge__plate, .js .badges .badge__note { opacity: 1; animation: none; }
+  .badges .badge__plate::after { display: none; }
+}
+
+@media (max-width: 1023px) { /* 3 + 2 */
+  .badges { display: flex; flex-wrap: wrap; gap: var(--space-l) var(--space-m); }
+  .badge { flex: 0 0 calc((100% - 2 * var(--space-m)) / 3); }
+}
+@media (max-width: 767px) { /* one swipeable row */
+  .trust .badges { /* .trust: outranks the ul[role="list"] padding reset */
+    flex-wrap: nowrap; justify-content: flex-start; gap: var(--space-s);
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scrollbar-width: none;
+    padding: var(--space-xs) calc(50% - 4.75rem) var(--space-s);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 2.5rem, #000 calc(100% - 2.5rem), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 2.5rem, #000 calc(100% - 2.5rem), transparent);
+  }
+  .badges::-webkit-scrollbar { display: none; }
+  .badge { flex: 0 0 9.5rem; scroll-snap-align: center; }
+  .badges__dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-xs); }
+  .badges__dots span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: color-mix(in srgb, var(--ink) 28%, transparent);
+    transition: background-color var(--dur-fast), transform var(--dur-fast);
+  }
+  .badges__dots span.is-on { background: var(--ink); transform: scale(1.35); }
+}
+
 /* ---------- Promise pillars ---------- */
 .pillars { display: grid; gap: var(--space-l); grid-template-columns: repeat(3, 1fr); }
 .pillar {
